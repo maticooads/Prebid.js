@@ -25,7 +25,7 @@ zMaticoo Bidder Adapter for Prebid.js.
                 bids: [
                     {
                         bidder: 'zmaticoo',
-                        bidId: '12345',
+                        bidId: '123456',
                         params: {
                             user: {
                                 uid: '12345',
