@@ -31,8 +31,7 @@ const VIDEO_CUSTOM_PARAMS = {
 }
 
 export const spec = {
-  code: BIDDER_CODE,
-  supportedMediaTypes: [BANNER, VIDEO],
+  code: BIDDER_CODE, supportedMediaTypes: [BANNER, VIDEO],
 
   /**
    * Determines whether or not the given bid request is valid.
@@ -76,9 +75,7 @@ export const spec = {
     const params = request.params;
     const imps = validBidRequests.map(request => {
       const impData = {
-        id: request.bidId,
-        secure: secure,
-        ext: {
+        id: request.bidId, secure: secure, ext: {
           bidder: {
             pubId: params.pubId
           }
@@ -186,6 +183,11 @@ export const spec = {
           };
           if (zmBid.ext && zmBid.ext.vast_url) {
             bid.vastXml = zmBid.ext.vast_url;
+          }
+          if (zmBid.ext && zmBid.ext.prebid) {
+            bid.mediaType = zmBid.ext.prebid.type
+          } else {
+            bid.mediaType = BANNER
           }
           bidResponses.push(bid);
         })
